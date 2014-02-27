@@ -92,6 +92,8 @@ public class TitleCheckers extends JFrame implements ActionListener  {
 		
 		JOptionPane.showMessageDialog (null, "You have chosen a custom game!", "Standard Selected", JOptionPane.INFORMATION_MESSAGE);
 		bl.Create_CustomBoard();
+		
+	
 	}
 
 	
