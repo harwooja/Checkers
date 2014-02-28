@@ -12,8 +12,42 @@ def drawBoard(window):
     bg = pygame.image.load("back.jpg")
     bg = pygame.transform.scale(bg, size)
     window.blit(bg,(0,0))
-    pygame.draw.rect(window,red,Rect((5,5), (490,490)))
-    pygame.draw.rect(window,black,Rect((10,10),(480,480)))
+    pygame.draw.rect(window,black,Rect((5,5), (490,490)))
+    pygame.draw.rect(window,red,Rect((10,10),(480,480)))
+
+    
+    x = 10;
+    for index in range (4):
+        #print(index)
+        y = 10
+        for j in range(4):
+            
+            pygame.draw.rect(window,white,Rect((x,y),(60,60)))
+            y = y +120
+                                               
+        
+        x = x + 120
+
+
+
+    x = 70;
+    for index in range (4):
+        #print(index)
+        y = 70
+        for j in range(4):
+            
+            pygame.draw.rect(window,white,Rect((x,y),(60,60)))
+            y = y +120
+                                               
+        
+        x = x + 120
+    
+    
+
+
+
+#480 width / 8 = 60 px
+#
 
 
 
@@ -32,6 +66,7 @@ def debug():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+                
         drawBoard(window,size)
         pygame.display.flip()
         clock.tick(60) #60 fps
