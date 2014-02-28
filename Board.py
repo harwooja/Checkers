@@ -1,8 +1,9 @@
-import pygame, sys
+import pygame, sys, Constants
 from pygame.locals import *
 
 
-def drawBoard(window,size):
+def drawBoard(window):
+    size = Constants.SIZE
     black = 0,0,0
     red = 245,27,27
     redp = 252,3,3
@@ -21,7 +22,7 @@ def debug():
     pygame.init()
     
     done = False
-    size = [800, 600]
+    size = Constants.SIZE
     window = pygame.display.set_mode(size)
     pygame.display.set_caption("Checkers")
     clock = pygame.time.Clock()
@@ -36,7 +37,7 @@ def debug():
         clock.tick(60) #60 fps
 
 
-debug()
+#debug()
     
 
 
