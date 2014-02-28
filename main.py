@@ -1,4 +1,4 @@
-import pygame,sys#,Board,InputManager,Setup
+import pygame,sys,Board#,InputManager,Setup
 from pygame.locals import *
 pygame.init()
 size = [800,600]
@@ -25,11 +25,11 @@ while done == False:
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             #print pos
-            InputManager.dispatch(pos)
+            #InputManager.dispatch(pos)
             
             
-    Board.drawBoard() #TODO Write this
-    Setup.drawSetup()
+    Board.drawBoard(window, size) #TODO Write this
+    #Setup.drawSetup()
     #window.blit(bg,(0,0)) #board
     #pygame.draw.rect (window, red, Rect((5,5), (490,490))) #board
     #pygame.draw.rect (window, black, Rect((10,10), (480,480))) #board
