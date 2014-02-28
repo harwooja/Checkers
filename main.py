@@ -22,6 +22,7 @@ while done == False:
         if event.type == pygame.QUIT:
             pygame.quit()
             sys.exit()
+    board.drawBoard #TODO Write this
     window.blit(bg,(0,0)) #board
     pygame.draw.rect (window, red, Rect((5,5), (490,490))) #board
     pygame.draw.rect (window, black, Rect((10,10), (480,480))) #board
