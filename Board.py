@@ -75,7 +75,7 @@ def drawPieces(window):
 
     for index in range (7):
         for j in range(7):
-            print j
+            
             if boardState[index][j] == "B" :
                     xCord = xCord + ((index*60)+9)
                     yCord = yCord + ((j*60))
