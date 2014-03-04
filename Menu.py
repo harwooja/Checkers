@@ -1,6 +1,16 @@
 import pygame,sys,Constants
 from pygame.locals import *
 
+buttons = []
+buttons[0] = (0,"standardButton",510,100,275,69)
+buttons[1] = (0,"customButton",510,350,275,69)
+buttons[2] = (1,"white",510,100,42,42)
+buttons[3] = (1,"black",510,200,42,42)
+buttons[4] = (1,"kingwhite",510,300,42,42)
+buttons[5] = (1,"kingblack",510,400,42,42)
+
+
+
 #drawSetup function
 def drawSetup(window):
     size = Constants.SIZE
