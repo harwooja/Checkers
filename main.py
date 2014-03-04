@@ -1,4 +1,4 @@
-import pygame,sys,Board,Constants,InputManager#,Menu
+import pygame,sys,Board,Constants,InputManager,Menu
 from pygame.locals import *
 pygame.init()
 size = Constants.SIZE
@@ -22,7 +22,7 @@ while done == False:
             
             
     Board.drawBoard(window)
-    #Menu.drawSetup() #TODO
+    Menu.drawSetup() #TODO
     pygame.display.flip()
     clock.tick(60) #60 fps
 
