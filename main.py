@@ -22,7 +22,7 @@ while done == False:
             
             
     Board.drawBoard(window)
-    Menu.drawSetup() #TODO
+    Menu.drawSetup(window) #TODO
     pygame.display.flip()
     clock.tick(60) #60 fps
 
