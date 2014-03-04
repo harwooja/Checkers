@@ -1,4 +1,4 @@
-import pygame,sys,Board,Constants,InputManager,Menu
+import pygame,sys,Board,Constants,InputManager,Menu,GameState
 from pygame.locals import *
 pygame.init()
 size = Constants.SIZE
