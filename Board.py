@@ -1,6 +1,11 @@
 import pygame, sys, Constants
 from pygame.locals import *
 
+Bsprite = pygame.image.load('black.png')
+Wsprite = pygame.image.load('white.png')
+BKsprite = pygame.image.load('kingblack.png')
+WKsprite = pygame.image.load('kingwhite.png')
+
 
 def drawBoard(window):
     size = Constants.SIZE
@@ -23,6 +28,7 @@ def drawBoard(window):
         for j in range(4):
             pygame.draw.rect(window,white,Rect((x,y),(60,60)))
             y = y +120
+            
                                                
         
         x = x + 120
@@ -43,12 +49,28 @@ def drawBoard(window):
     
 
 def drawPieces(array):
-
+    xCord = 10
+    yCord = 10
 
     for index in range (7):
         for j in range(7):
-            if x[0][j] == "B":
-                print x
+            if x[index][j] == "B" :
+                    xCord = xCord + ((index*60)+9)
+                    yCord = yCord + ((j*60)
+                    pygame.draw.rect(window,white,Rect((xCord,yCord),(42,42)))
+
+            elif x[index][j] == "W" :
+                    xCord = xCord + (index*60)
+                    yCord = yCord + (j*60)
+
+            elif x[index][j] == "KB" :
+                    xCord = xCord + (index*60)
+                    yCord = yCord + (j*60)
+
+            elif x[index][j] == "KW" :
+                    xCord = xCord + (index*60)
+                    yCord = yCord + (j*60)
+                
                 
             
     
