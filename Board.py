@@ -4,6 +4,18 @@ from pygame.locals import *
 TOPLEFT = 10
 WIDTH = 480
 
+
+
+
+
+
+boardState = []
+
+for m in range (7):
+    boardState.append([])
+    for z in range(7):
+        boardState[m].append(["B"])  
+
 def drawBoard(window):
     size = Constants.SIZE
     black = 0,0,0
@@ -20,12 +32,12 @@ def drawBoard(window):
     
     x = 10;
     for index in range (4):
-        #print(index)
+        
         y = 10
         for j in range(4):
-            
             pygame.draw.rect(window,white,Rect((x,y),(60,60)))
             y = y +120
+            
                                                
         
         x = x + 120
@@ -34,7 +46,7 @@ def drawBoard(window):
 
     x = 70;
     for index in range (4):
-        #print(index)
+       
         y = 70
         for j in range(4):
             
@@ -43,13 +55,52 @@ def drawBoard(window):
                                                
         
         x = x + 120
+
+
+    drawPieces(window)
+
+
     
     
+    
+    
+    
 
+def drawPieces(window):
 
+    Bsprite = pygame.image.load('black.png').convert_alpha()
+    Wsprite = pygame.image.load('white.png').convert_alpha()
+    BKsprite = pygame.image.load('kingblack.png').convert_alpha()
+    WKsprite = pygame.image.load('kingwhite.png').convert_alpha()
+    xCord = 10
+    yCord = 10
 
-#480 width / 8 = 60 px
-#
+    for index in range (7):
+        for j in range(7):
+            
+            if boardState[index][j] == "B" :
+                    xCord = xCord + ((index*60)+9)
+                    yCord = yCord + ((j*60))
+                    window.blit(Bsprite,(xCord,yCord))
+
+            elif boardState[index][j] == "W" :
+                    xCord = xCord + (index*60)
+                    yCord = yCord + (j*60)
+                    window.blit(Wsprite,(xCord,yCord))
+
+            elif boardState[index][j] == "KB" :
+                    xCord = xCord + (index*60)
+                    yCord = yCord + (j*60)
+                    window.blit(BKsprite,(xCord,yCord))
+
+            elif boardState[index][j] == "KW" :
+                    xCord = xCord + (index*60)
+                    yCord = yCord + (j*60)
+                    window.blit(WKsprite,(xCord,yCord))
+                
+                
+            
+    
 
 
 
@@ -69,12 +120,14 @@ def debug():
                 pygame.quit()
                 sys.exit()
                 
-        drawBoard(window,size)
+        drawBoard(window)
         pygame.display.flip()
         clock.tick(60) #60 fps
 
 
-#debug()
+
+debug()
+
     
 
 
