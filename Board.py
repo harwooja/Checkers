@@ -1,11 +1,18 @@
 import pygame, sys, Constants
 from pygame.locals import *
 
-Bsprite = pygame.image.load('black.png')
-Wsprite = pygame.image.load('white.png')
-BKsprite = pygame.image.load('kingblack.png')
-WKsprite = pygame.image.load('kingwhite.png')
 
+
+
+
+
+
+boardState = []
+
+for m in range (7):
+    boardState.append([])
+    for z in range(7):
+        boardState[m].append(["B"])  
 
 def drawBoard(window):
     size = Constants.SIZE
@@ -46,30 +53,48 @@ def drawBoard(window):
                                                
         
         x = x + 120
+
+
+    drawPieces(window)
+
+
+    
+    
+    
+    
     
 
-def drawPieces(array):
+def drawPieces(window):
+
+    Bsprite = pygame.image.load('black.png').convert_alpha()
+    Wsprite = pygame.image.load('white.png').convert_alpha()
+    BKsprite = pygame.image.load('kingblack.png').convert_alpha()
+    WKsprite = pygame.image.load('kingwhite.png').convert_alpha()
     xCord = 10
     yCord = 10
 
     for index in range (7):
         for j in range(7):
-            if x[index][j] == "B" :
+            print j
+            if boardState[index][j] == "B" :
                     xCord = xCord + ((index*60)+9)
-                    yCord = yCord + ((j*60)
-                    pygame.draw.rect(window,white,Rect((xCord,yCord),(42,42)))
+                    yCord = yCord + ((j*60))
+                    window.blit(Bsprite,(xCord,yCord))
 
-            elif x[index][j] == "W" :
+            elif boardState[index][j] == "W" :
                     xCord = xCord + (index*60)
                     yCord = yCord + (j*60)
+                    window.blit(Wsprite,(xCord,yCord))
 
-            elif x[index][j] == "KB" :
+            elif boardState[index][j] == "KB" :
                     xCord = xCord + (index*60)
                     yCord = yCord + (j*60)
+                    window.blit(BKsprite,(xCord,yCord))
 
-            elif x[index][j] == "KW" :
+            elif boardState[index][j] == "KW" :
                     xCord = xCord + (index*60)
                     yCord = yCord + (j*60)
+                    window.blit(WKsprite,(xCord,yCord))
                 
                 
             
