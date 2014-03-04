@@ -1,4 +1,4 @@
-import pygame,sys,Board,Constants#,InputManager,Setup
+import pygame,sys,Board,Constants,InputManager#,Menu
 from pygame.locals import *
 pygame.init()
 size = Constants.SIZE
@@ -18,11 +18,11 @@ while done == False:
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
             #print pos
-            #InputManager.dispatch(pos)
+            InputManager.dispatch(pos)
             
             
-    Board.drawBoard(window) #TODO Write this
-    #Setup.drawSetup()
+    Board.drawBoard(window)
+    #Menu.drawSetup() #TODO
     pygame.display.flip()
     clock.tick(60) #60 fps
 

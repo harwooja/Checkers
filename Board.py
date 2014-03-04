@@ -1,6 +1,8 @@
 import pygame, sys, Constants
 from pygame.locals import *
 
+TOPLEFT = 10
+WIDTH = 480
 
 def drawBoard(window):
     size = Constants.SIZE
