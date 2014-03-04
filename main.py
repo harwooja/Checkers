@@ -8,7 +8,6 @@ done = False
 clock = pygame.time.Clock()
 
 
-
 #Event Loop
 while done == False:
     for event in pygame.event.get():
@@ -21,6 +20,7 @@ while done == False:
             InputManager.dispatch(pos)
             
             
+
     Board.drawBoard(window)
     Menu.drawCustomSetup(window)
     #if GameState.getGameState() == 0:
