@@ -18,10 +18,9 @@ def drawBoard(window):
     
     x = 10;
     for index in range (4):
-        #print(index)
+        
         y = 10
         for j in range(4):
-            
             pygame.draw.rect(window,white,Rect((x,y),(60,60)))
             y = y +120
                                                
@@ -32,7 +31,7 @@ def drawBoard(window):
 
     x = 70;
     for index in range (4):
-        #print(index)
+       
         y = 70
         for j in range(4):
             
@@ -42,12 +41,17 @@ def drawBoard(window):
         
         x = x + 120
     
+
+def drawPieces(array):
+
+
+    for index in range (7):
+        for j in range(7):
+            if x[0][j] == "B":
+                print x
+                
+            
     
-
-
-
-#480 width / 8 = 60 px
-#
 
 
 
@@ -67,12 +71,14 @@ def debug():
                 pygame.quit()
                 sys.exit()
                 
-        drawBoard(window,size)
+        drawBoard(window)
         pygame.display.flip()
         clock.tick(60) #60 fps
 
 
-#debug()
+
+debug()
+
     
 
 
