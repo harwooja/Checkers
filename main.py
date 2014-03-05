@@ -23,12 +23,12 @@ while done == False:
             
 
     Board.drawBoard(window)
-    Menu.drawSetup(window)
     
-    #if GameState.getGameState() == 0:
-    #    Menu.drawSetup(window)
-    #else if GameState.getGameState() == 1:
-    #    Menu.drawCustomSetup(window)
+    
+    if GameState.s.getGameState() == 0:
+        Menu.drawSetup(window)
+    elif GameState.s.getGameState() == 1:
+        Menu.drawCustomSetup(window)
     
     pygame.display.flip()
     clock.tick(60) #60 fps

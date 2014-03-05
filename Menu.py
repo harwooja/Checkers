@@ -24,13 +24,12 @@ def drawCustomSetup(window):
     window.blit(piece_BK, (510,400))
 
 
-def getButton():
-    return buttons
+
 def buttonCustomBoard():
     GameState.s.setGameState(1)
 
 def buttonCustomPiece(pieceType):
-    GameState.s.setSelectedCustom(pieceType)
+    GameState.s.setSelectedCustomPiece(pieceType)
 
 def buttonStandardBoard():
     GameState.s.setGameState(2)

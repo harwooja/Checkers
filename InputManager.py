@@ -1,4 +1,4 @@
-import pygame, sys, Constants,Board
+import pygame, sys, Constants,Board,GameState,Menu
 from pygame.locals import *
 
 def dispatch(pos):
@@ -14,25 +14,27 @@ def dispatch(pos):
         x = Constants.getButtons()
         for i in x:
             if i[0] == GameState.s.getGameState():
-                xmin = i[3]
-                ymin = i[4]
-                xmax = xmin + i[5]
-                ymax = ymin + i[6]
-                if xmin<=pos[0]<=xmax and ymin<=pos[1] <=ymax:
-                    callFunction(i[0])
+                xmin = i[2]
+                ymin = i[3]
+                xmax = xmin + i[4]
+                ymax = ymin + i[5]
+                print pos
+                print (xmin,xmax,ymin,ymax,i[1])
+                if (xmin<=pos[0]<=xmax) and (ymin<=pos[1] <=ymax):
+                    callFunction(i[1])
 
 
 def callFunction(s):
-
+    print s
     if (s == "standardButton"):
-        Menu.buttonStandard()
+        Menu.buttonStandardBoard()
     elif (s == "customButton"):
-        Menu.buttonCustom()
+        Menu.buttonCustomBoard()
     elif (s == "white"):
-        Menu.CustomPiece("W")
+        Menu.buttonCustomPiece("W")
     elif (s == "black"):
-        Menu.CustomPiece("B")
+        Menu.buttonCustomPiece("B")
     elif (s == "kingwhite"):
-        Menu.CustomPiece("KW")
+        Menu.buttonCustomPiece("KW")
     elif (s == "kingblack"):
-        Menu.CustomPiece("KB")
+        Menu.buttonCustomPiece("KB")
