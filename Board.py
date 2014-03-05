@@ -1,4 +1,4 @@
-import pygame, sys, Constants
+import pygame, sys, Constants, GameState
 from pygame.locals import *
 
 TOPLEFT = 10
@@ -14,7 +14,7 @@ boardState = []
 for m in range (8):
     boardState.append([])
     for z in range(8):
-        boardState[m].append("W")  
+        boardState[m].append("Blank")  
 
 def drawBoard(window):
     size = Constants.SIZE
@@ -80,28 +80,48 @@ def drawPieces(window):
             
             if boardState[index][j] == "B" :
                     
-                    xCord = 10 + ((index*60)+9)
-                    yCord = 20 + ((j*60))
+                    yCord = 10 + ((index*60)+9)
+                    xCord = 20 + ((j*60))
                     window.blit(Bsprite,(xCord,yCord))
 
             elif boardState[index][j] == "W" :
-                    xCord = 10 + ((index*60)+9)
-                    yCord = 20 + (j*60)
+                    yCord = 10 + ((index*60)+9)
+                    xCord = 20 + (j*60)
                     window.blit(Wsprite,(xCord,yCord))
 
             elif boardState[index][j] == "KB" :
-                    xCord = 10 + ((index*60)+9)
-                    yCord = 20 + (j*60)
+                    yCord = 10 + ((index*60)+9)
+                    xCord = 20 + (j*60)
                     window.blit(BKsprite,(xCord,yCord))
 
             elif boardState[index][j] == "KW" :
-                    xCord = 10 + ((index*60)+9)
-                    yCord = 20 + (j*60)
+                    yCord = 10 + ((index*60)+9)
+                    xCord = 20 + (j*60)
                     window.blit(WKsprite,(xCord,yCord))
                 
-                
+
+def selectTile(a, b):
+
+    s = GameState.s
+
+    if (s.getGameState() == 1):
+        
+        checkC = a + b
+
+        if (checkC % 2 != 0):
+            boardState[a][b] = s.getSelectedCustomPiece()
+
+        
             
-    
+
+         
+def insertPiece(a, b, piece):
+    boardState[a][b] = piece
+
+def deletePiece(a, b):
+    boardState[a][b] = "BLANK"
+            
+
 
 
 
