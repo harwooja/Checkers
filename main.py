@@ -20,6 +20,7 @@ while done == False:
             InputManager.dispatch(pos)
             
             
+            
 
     Board.drawBoard(window)
     Menu.drawSetup(window)
