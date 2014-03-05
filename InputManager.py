@@ -12,7 +12,7 @@ def dispatch(pos):
         Board.selectTile(row,column)
     else:
         x = Constants.getButtons()
-        for i in range x:
+        for i in x:
             if i[0] == GameState.s.getGameState():
                 xmin = i[3]
                 ymin = i[4]
@@ -24,15 +24,15 @@ def dispatch(pos):
 
 def callFunction(s):
 
-    if (s = "standardButton"):
+    if (s == "standardButton"):
         Menu.buttonStandard()
-    elif (s = "customButton"):
+    elif (s == "customButton"):
         Menu.buttonCustom()
-    elif (s = "white"):
+    elif (s == "white"):
         Menu.CustomPiece("W")
-    elif (s = "black"):
+    elif (s == "black"):
         Menu.CustomPiece("B")
-    elif (s = "kingwhite"):
+    elif (s == "kingwhite"):
         Menu.CustomPiece("KW")
-    elif (s = "kingblack"):
+    elif (s == "kingblack"):
         Menu.CustomPiece("KB")
