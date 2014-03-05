@@ -9,6 +9,6 @@ def dispatch(pos):
         column = (pos[0]-bTopLeft)/60
         row = (pos[1]-bTopLeft)/60
         print (row,column)
-        #Board.selectTile(row,column)
+        Board.selectTile(row,column)
     else:
         print pos
