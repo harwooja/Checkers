@@ -6,8 +6,7 @@ window = pygame.display.set_mode(size)
 pygame.display.set_caption("Checkers 2ME3/2AA4 #CompSci4Life")
 done = False
 clock = pygame.time.Clock()
-GameState.s.setGameState(1)
-print GameState.s.getGameState()
+
 
 #Event Loop
 while done == False:
@@ -23,7 +22,8 @@ while done == False:
             
 
     Board.drawBoard(window)
-    Menu.drawCustomSetup(window)
+    Menu.drawSetup(window)
+    
     #if GameState.getGameState() == 0:
     #    Menu.drawSetup(window)
     #else if GameState.getGameState() == 1:

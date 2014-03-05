@@ -1,4 +1,4 @@
-import pygame,sys,Constants
+import pygame,sys,Constants,GameState,Board
 from pygame.locals import *
 
 buttons = []
@@ -19,6 +19,7 @@ def drawSetup(window):
 
     window.blit(button1,(510,100))
     window.blit(button2,(510,350))
+    
 
 def drawCustomSetup(window):
     size = Constants.SIZE
@@ -31,3 +32,24 @@ def drawCustomSetup(window):
     window.blit(piece_WK, (510,200))
     window.blit(piece_B, (510,300))
     window.blit(piece_BK, (510,400))
+
+def buttonCustomBoard():
+    GameState.s.setGameState(1)
+
+def buttonCustomPiece(pieceType):
+    GameState.s.setSelectedCustom(pieceType)
+
+def buttonStandardBoard():
+    GameState.s.setGameState(2)
+    row = 0
+    column = 1
+    for row in range(8):
+        for column in range(8):
+            if (0<= row <= 2) and (row+column %2 == 1):
+                Board.insertPiece(row,column,"B")
+            if (5<row<=8) and (row+column %2 != 0):
+                Board.insertPiece(row,column,"W")
+                
+                
+        
+    
