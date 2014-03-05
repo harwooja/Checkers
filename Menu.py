@@ -11,6 +11,7 @@ buttons.append((1,"kingblack",510,400,42,42))
 
 
 
+
 #drawSetup function
 def drawSetup(window):
     size = Constants.SIZE
@@ -31,3 +32,8 @@ def drawCustomSetup(window):
     window.blit(piece_WK, (510,200))
     window.blit(piece_B, (510,300))
     window.blit(piece_BK, (510,400))
+
+
+def getButton():
+
+    return buttons    
