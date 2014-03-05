@@ -11,10 +11,10 @@ WIDTH = 480
 
 boardState = []
 
-for m in range (7):
+for m in range (8):
     boardState.append([])
-    for z in range(7):
-        boardState[m].append(["B"])  
+    for z in range(8):
+        boardState[m].append("B")  
 
 def drawBoard(window):
     size = Constants.SIZE
@@ -75,27 +75,28 @@ def drawPieces(window):
     xCord = 10
     yCord = 10
 
-    for index in range (7):
-        for j in range(7):
+    for index in range (8):
+        for j in range(8):
             
             if boardState[index][j] == "B" :
-                    xCord = xCord + ((index*60)+9)
-                    yCord = yCord + ((j*60))
+                    
+                    xCord = 10 + ((index*60)+9)
+                    yCord = 20 + ((j*60))
                     window.blit(Bsprite,(xCord,yCord))
 
             elif boardState[index][j] == "W" :
-                    xCord = xCord + (index*60)
-                    yCord = yCord + (j*60)
+                    xCord = 10 + (index*60)
+                    yCord = 20 + (j*60)
                     window.blit(Wsprite,(xCord,yCord))
 
             elif boardState[index][j] == "KB" :
-                    xCord = xCord + (index*60)
-                    yCord = yCord + (j*60)
+                    xCord = 10 + (index*60)
+                    yCord = 20 + (j*60)
                     window.blit(BKsprite,(xCord,yCord))
 
             elif boardState[index][j] == "KW" :
-                    xCord = xCord + (index*60)
-                    yCord = yCord + (j*60)
+                    xCord = 10 + (index*60)
+                    yCord = 20 + (j*60)
                     window.blit(WKsprite,(xCord,yCord))
                 
                 
