@@ -40,3 +40,7 @@ def callFunction(s):
         Menu.buttonCustomPiece("KB")
     elif (s == "blank"):
         Menu.buttonCustomPiece("BLANK")
+    elif (s == "finish"):
+        Menu.buttonCustomFinish()
+
+    
