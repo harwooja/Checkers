@@ -38,3 +38,5 @@ def callFunction(s):
         Menu.buttonCustomPiece("KW")
     elif (s == "kingblack"):
         Menu.buttonCustomPiece("KB")
+    elif (s == "blank"):
+        Menu.buttonCustomPiece("BLANK")

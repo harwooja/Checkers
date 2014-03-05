@@ -17,11 +17,13 @@ def drawCustomSetup(window):
     piece_B = pygame.image.load("black.png").convert_alpha()
     piece_WK = pygame.image.load("kingwhite.png").convert_alpha()
     piece_BK = pygame.image.load("kingblack.png").convert_alpha()
+    piece_BLANK = pygame.image.load("redx.png").convert_alpha()
 
     window.blit(piece_W, (510,100))
     window.blit(piece_WK, (510,200))
     window.blit(piece_B, (510,300))
     window.blit(piece_BK, (510,400))
+    window.blit(piece_BLANK, (510, 10)) 
 
 
 

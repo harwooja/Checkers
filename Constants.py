@@ -12,4 +12,5 @@ def getButtons():
     buttons.append((1,"black",510,300,42,42))
     buttons.append((1,"kingwhite",510,200,42,42))
     buttons.append((1,"kingblack",510,400,42,42))
+    buttons.append((1,"blank", 510, 10, 42, 42))
     return buttons
