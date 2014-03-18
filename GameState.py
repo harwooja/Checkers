@@ -24,7 +24,7 @@ class State():
     def setPickedUpPiece(self,x):
         self.pickedUpPiece = x
 
-    def getPieckedUpPiece(self,x):
+    def getPieckedUpPiece(self):
         return self.pickedUpPiece
 
         
