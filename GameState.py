@@ -26,7 +26,7 @@ class State():
     def setPickedUpPiece(self,x):
         self.pickedUpPiece = x
 
-    def getPieckedUpPiece(self):
+    def getPickedUpPiece(self):
         return self.pickedUpPiece
 
     def setCurrentPlayer(self,x):

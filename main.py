@@ -8,6 +8,29 @@ done = False
 clock = pygame.time.Clock()
 
 
+
+def drawPickedUpPiece():
+    posx,posy = pygame.mouse.get_pos()
+    posx = posx - 18
+    posy = posy - 18
+    if GameState.s.getPickedUpPiece()=="white":
+        piece = pygame.image.load("white.png").convert_alpha()
+        window.blit(piece,(posx,posy))
+
+    elif GameState.s.getPickedUpPiece()=="black":
+        piece = pygame.image.load("black.png").convert_alpha()
+        window.blit(piece,(posx,posy))
+
+    elif GameState.s.getPickedUpPiece()=="kingblack":
+        piece = pygame.image.load("kingblack.png").convert_alpha()
+        window.blit(piece,(posx,posy))
+
+    elif GameState.s.getPickedUpPiece()=="kingwhite":
+        piece = pygame.image.load("kingwhite.png").convert_alpha()
+        window.blit(piece,(posx,posy))
+
+
+
 #Event Loop
 while done == False:
     for event in pygame.event.get():
@@ -29,9 +52,13 @@ while done == False:
         Menu.drawSetup(window)
     elif GameState.s.getGameState() == 1:
         Menu.drawCustomSetup(window)
-    
+        
+    drawPickedUpPiece()
     pygame.display.flip()
     clock.tick(60) #60 fps
+
+
+
 
 
 
