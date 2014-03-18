@@ -8,7 +8,6 @@ def dispatch(pos):
     if (bTopLeft <= pos[0] < bBottom) and (bTopLeft <= pos[1] < bBottom):
         column = (pos[0]-bTopLeft)/60
         row = (pos[1]-bTopLeft)/60
-        print (row,column)
         Board.selectTile(row,column)
     else:
         x = Constants.getButtons()
@@ -18,14 +17,11 @@ def dispatch(pos):
                 ymin = i[3]
                 xmax = xmin + i[4]
                 ymax = ymin + i[5]
-                print pos
-                print (xmin,xmax,ymin,ymax,i[1])
                 if (xmin<=pos[0]<=xmax) and (ymin<=pos[1] <=ymax):
                     callFunction(i[1])
 
 
 def callFunction(s):
-    print s
     if (s == "standardButton"):
         Menu.buttonStandardBoard()
     elif (s == "customButton"):

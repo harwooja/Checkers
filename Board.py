@@ -114,7 +114,7 @@ def selectTile(a, b):
         
             
 
-         
+
 def insertPiece(a, b, piece):
     boardState[a][b] = piece
 

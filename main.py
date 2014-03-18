@@ -16,7 +16,7 @@ while done == False:
             sys.exit()
         if event.type == pygame.MOUSEBUTTONDOWN:
             pos = pygame.mouse.get_pos()
-            #print pos
+            
             InputManager.dispatch(pos)
             
             
