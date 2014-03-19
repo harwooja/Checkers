@@ -74,6 +74,8 @@ def drawPieces(window):
     WKsprite = pygame.image.load('kingwhite.png').convert_alpha()
     xCord = 10
     yCord = 10
+    green = 27,245,27
+    yellow = 245,245,27
 
     for index in range (8):
         for j in range(8):
@@ -98,11 +100,21 @@ def drawPieces(window):
                     yCord = 10 + ((index*60)+9)
                     xCord = 20 + (j*60)
                     window.blit(WKsprite,(xCord,yCord))
+                    
+            elif boardState[index][j] == "selected":
+                ycord = 10 + (index*60)
+                xcord = 10 + (j*60)
+                pygame.draw.rect(window,green,Rect((xcord,ycord),(60,60)))
+
+            elif boardState[index][j] == "legal":
+                ycord = 10 + (index*60)
+                xcord = 10 + (j*60)
+                pygame.draw.rect(window,red,Rect((xcord,ycord),(60,60)))
                 
-def checkLegalMoves(a,b):
+def checkLegalMoves(coord):
     return []
 
-def checkAttackMoves(a,b):
+def checkAttackMoves(coord):
     return []
     
 def selectTile(x, y):
@@ -117,15 +129,30 @@ def selectTile(x, y):
             boardState[x][y] = s.getSelectedCustomPiece()
             
     elif (s.getGameState() == 2): #Game phase
-        if not GameState.s.getSelectedTile() #A tile has not currently been picked up
-            m = checkLegalMoves((x,y)) #checking if the piece can be picked up
-            if legalMoves:
-                GameState.s.setSelectedTile((x,y))
-                GameState.s.setLegalMoves(m)
-                if 
+        if not GameState.s.getSelectedTile(): #A tile has not currently been picked up
+            moves = checkLegalMoves((x,y)) #checking if the piece can be picked up
+            st = GameState.s
+            if moves:
+                st.setSelectedTile((x,y))
+                st.setLegalMoves(m)
+                pType = boardState[x][y]
+                if pType == "B":
+                    st.setPickedUpPiece("black")
+                elif pType == "W":
+                    st.setPickedUpPiece("white")
+                elif pType == "KW":
+                    st.setPickedUpPiece("kingwhite")
+                elif pType == "KB":
+                    st.setPickedUpPiece("kingblack")
+                boardState[x][y] = "selected"
+                for m in moves:
+                    boardState[m[0]][m[1]] = "legal"
+        
+                
+                    
         else:
             state = GameState.s
-            moves = state.getLegalMoves
+            moves = state.getLegalMoves()
             for m in moves:
                 if (x,y) == (m[0],m[1]):
                     print "To do later"
@@ -140,34 +167,7 @@ def insertPiece(a, b, piece):
 
 def deletePiece(a, b):
     boardState[a][b] = "BLANK"
-            
 
-
-
-
-def debug():
-
-    pygame.init()
-    
-    done = False
-    size = Constants.SIZE
-    window = pygame.display.set_mode(size)
-    pygame.display.set_caption("Checkers")
-    clock = pygame.time.Clock()
-
-    while done == False:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-                
-        drawBoard(window)
-        pygame.display.flip()
-        clock.tick(60) #60 fps
-
-
-
-#debug()
 
     
 
