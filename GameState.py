@@ -8,6 +8,8 @@ class State():
     selectedCustomTile = "W"
     pickedUpPiece = "BLANK"
     currentPlayer = "WHITE"
+    selectedTile = ()
+    legalMoves = []
 
     def getGameState(self):
         return self.gameState
@@ -34,5 +36,21 @@ class State():
 
     def getCurrentPlayer(self):
         return self.currentPlayer
+    
+    def getSelectedTile(self):
+        return self.selectedTile
+    
+    def setSelectedTile(self,x):
+        self.selectedTile = x
+
+    def clearSelectedTile(self):
+        self.selectedTile = ()
+
+    def setLegalMoves(self,x):
+        self.legalMoves = x
+
+    def getLegalMoves(self):
+        return self.legalMoves
+    
         
 s = State()

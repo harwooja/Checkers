@@ -99,17 +99,37 @@ def drawPieces(window):
                     xCord = 20 + (j*60)
                     window.blit(WKsprite,(xCord,yCord))
                 
+def checkLegalMoves(a,b):
+    return []
 
-def selectTile(a, b):
+def checkAttackMoves(a,b):
+    return []
+    
+def selectTile(x, y):
 
     s = GameState.s
 
-    if (s.getGameState() == 1):
+    if (s.getGameState() == 1): #Setup phase
         
-        checkC = a + b
+        checkC = x + y
 
-        if (checkC % 2 != 0):
-            boardState[a][b] = s.getSelectedCustomPiece()
+        if (checkC % 2 != 0):  #they clicked a white tile
+            boardState[x][y] = s.getSelectedCustomPiece()
+            
+    elif (s.getGameState() == 2): #Game phase
+        if not GameState.s.getSelectedTile() #A tile has not currently been picked up
+            m = checkLegalMoves((x,y)) #checking if the piece can be picked up
+            if legalMoves:
+                GameState.s.setSelectedTile((x,y))
+                GameState.s.setLegalMoves(m)
+                if 
+        else:
+            state = GameState.s
+            moves = state.getLegalMoves
+            for m in moves:
+                if (x,y) == (m[0],m[1]):
+                    print "To do later"
+                
 
         
             
