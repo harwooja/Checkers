@@ -6,9 +6,19 @@ def drawSetup(window):
     size = Constants.SIZE
     button1 = pygame.image.load("standardButton.png").convert_alpha()
     button2 = pygame.image.load("customButton.png").convert_alpha()
+    button3 = pygame.image.load("loadGameButton.png").convert_alpha()
 
     window.blit(button1,(510,100))
-    window.blit(button2,(510,350))
+    window.blit(button2,(510,250))
+    window.blit(button3,(510,400))
+
+def drawGame(window):
+    size = Constants.SIZE
+    button1 = pygame.image.load("saveGameButton").convert_alpha()
+    button2 = pygame.image.load("menuButton").convert_alpha()
+
+    window.blit(button1,(510,100))
+    window.blit(button2,(510,250))
     
 
 def drawCustomSetup(window):
