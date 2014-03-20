@@ -2,23 +2,26 @@ import itertools
 
 def saveState(state):
     oneList = list(itertools.chain.from_iterable(state))
-    myfile = open("savingTest.txt","w")
+    myfile = open("Savefile.txt","w")
     for item in oneList:
           myfile.write("%s\n" % item)
     myfile.close()
 
 def loadState():
     lastList = []
-    with open("savingTest.txt", "r") as myfile:
-        for line in myfile:
-            lastList.append(line)
-    finalList = []
-    counter1 = 0
-    counter2 = 8
-    while(len(finalList) != 8):
-        finalList.append(make1DAndAppend(lastList,counter1,counter2))
-    return finalList    
-    myfile.close()
+    try:
+        with open("Savefile.txt", "r") as myfile:
+            for line in myfile:
+                lastList.append(line)
+        finalList = []
+        counter1 = 0
+        counter2 = 8
+        while(len(finalList) != 8):
+            finalList.append(make1DAndAppend(lastList,counter1,counter2))
+        return finalList    
+        myfile.close()
+    except IOError:
+        print("No save file detected")
 
 def make1DArray(state):
     newList = []
