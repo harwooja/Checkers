@@ -38,5 +38,12 @@ def callFunction(s):
         Menu.buttonCustomPiece("BLANK")
     elif (s == "finish"):
         Menu.buttonCustomFinish()
+    elif (s == "saveButton"):
+        print("Saved Game")
+        Saving.saveState(Board.boardState)
+    elif (s == "loadButton"):
+        print("Loaded Game")
+        Board.boardState = Saving.loadState()
+        GameState.s.setGameState(2)
 
     
