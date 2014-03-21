@@ -14,7 +14,27 @@ boardState = []
 for m in range (8):
     boardState.append([])
     for z in range(8):
-        boardState[m].append("Blank")  
+        boardState[m].append("Blank")
+
+def convStateToFile(a):
+    if a == "B":
+        return "black"
+    elif a == "W":
+        return "white"
+    elif a == "KB":
+        return "kingblack"
+    elif a == "KW":
+        return "kingwhite"
+
+def convFileToState(a):
+    if a == "black":
+        return "B"
+    elif a == "white":
+        return "W"
+    elif a == "kingblack":
+        return "KB"
+    elif a == "kingwhite":
+        return "KW"
 
 def drawBoard(window):
     size = Constants.SIZE
@@ -117,25 +137,25 @@ def checkLegalMoves(coord):
 def checkAttackMoves(coord):
     return []
     
-def selectTile(x, y):
+def selectTile(a, b):
 
     s = GameState.s
 
     if (s.getGameState() == 1): #Setup phase
         
-        checkC = x + y
+        checkC = a + b
 
         if (checkC % 2 != 0):  #they clicked a white tile
-            boardState[x][y] = s.getSelectedCustomPiece()
+            boardState[a][b] = s.getSelectedCustomPiece()
             
     elif (s.getGameState() == 2): #Game phase
         if not GameState.s.getSelectedTile(): #A tile has not currently been picked up
-            moves = checkLegalMoves((x,y)) #checking if the piece can be picked up
+            moves = checkLegalMoves((a,b)) #checking if the piece can be picked up
             st = GameState.s
             if moves:
-                st.setSelectedTile((x,y))
+                st.setSelectedTile((a,b))
                 st.setLegalMoves(m)
-                pType = boardState[x][y]
+                pType = boardState[a][b]
                 if pType == "B":
                     st.setPickedUpPiece("black")
                 elif pType == "W":
@@ -144,7 +164,8 @@ def selectTile(x, y):
                     st.setPickedUpPiece("kingwhite")
                 elif pType == "KB":
                     st.setPickedUpPiece("kingblack")
-                boardState[x][y] = "selected"
+                boardState[a][b] = "selected"
+                
                 for m in moves:
                     boardState[m[0]][m[1]] = "legal"
         
@@ -153,9 +174,46 @@ def selectTile(x, y):
         else:
             state = GameState.s
             moves = state.getLegalMoves()
-            for m in moves:
-                if (x,y) == (m[0],m[1]):
-                    print "To do later"
+            if boardState[a][b] == "selected": #case 1 they clicked on the selected tile
+                    boardState[a][b] = convFileToState(state.getPickedUpPiece())
+                    for m in moves:
+                        boardState[m[0]][m[1]] = "BLANK"
+                    state.setLegalMoves([])
+                    state.setSelectedTile(())
+                    state.setPickedUpTile("BLANK")
+            else:
+                for m in moves:
+                    if a == m[0] and b == m[1]: #case 2 a legal move is taken
+                        if not m[2]: #no piece taken
+                            boardState[a][b] = convFileToState(state.getPickedUpPiece())
+                            select = state.getSelectedTile()
+                            boardState[select[0]][select[1]] = "BLANK"
+                            for m in moves:
+                                if (m[0],m[1]) != (a,b):
+                                    boardState[m[0]][m[1]] = "BLANK"
+                            
+                            state.playerSwitch()
+                            state.clearPiece()
+                            return
+                        else:
+                            boardState[a][b] = convFileToState(state.getPickedUpPiece())
+                            select = state.getSelectedTile()
+                            boardState[select[0]][select[1]] = "BLANK"
+                            boardState[m[2][0]][m[2][1]] = "BLANK"
+                            for m in moves:
+                                if (m[0],m[1]) != (a,b):
+                                    boardState[m[0]][m[1]] = "BLANK"
+                            secMoves = checkAttackMoves((a,b))
+                            if not secMoves: #there are other attack moves to be taken
+                                state.playerSwitch()
+                                state.clearPiece()
+                                return
+                            else:
+                                boardState[a][b] = "selected"
+                                state.setSelectedTile((a,b))
+                                state.setLegalMoves(secMoves)
+                                return
+                            
                 
 
         

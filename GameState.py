@@ -51,6 +51,17 @@ class State():
 
     def getLegalMoves(self):
         return self.legalMoves
+
+    def clearPiece(self):
+        self.legalMoves = []
+        self.selectedTile = ()
+        self.pickedUpPiece = "BLANK"
+
+    def playerSwitch(self):
+        if currentPlayer == "WHITE":
+            currentPlayer = "BLACK"
+        else:
+            currentPlayer = "WHITE"
     
         
 s = State()

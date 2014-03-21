@@ -45,7 +45,7 @@ def drawCustomSetup(window):
         window.blit(piece_Selected, (510,300))
     elif s == "KW":
         window.blit(piece_Selected, (510,200))
-    elif s == "KB0":
+    elif s == "KB":
         window.blit(piece_Selected, (510,400))
     elif s == "BLANK":
         window.blit(piece_Selected, (510,10))
