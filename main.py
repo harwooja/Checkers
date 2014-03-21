@@ -6,7 +6,7 @@ window = pygame.display.set_mode(size)
 pygame.display.set_caption("Checkers 2ME3/2AA4 #CompSci4Life")
 done = False
 clock = pygame.time.Clock()
-
+Menu.init_buttons()
 
 
 def drawPickedUpPiece():
@@ -52,7 +52,9 @@ while done == False:
         Menu.drawSetup(window)
     elif GameState.s.getGameState() == 1:
         Menu.drawCustomSetup(window)
-        
+    elif GameState.s.getGameState() == 2:
+        Menu.drawGame(window)
+    
     drawPickedUpPiece()
     pygame.display.flip()
     clock.tick(60) #60 fps
