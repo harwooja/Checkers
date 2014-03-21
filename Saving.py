@@ -23,16 +23,6 @@ def loadState():
     except IOError:
         print("No save file detected")
 
-def make1DArray(state):
-    newList = []
-    for i in range (len(state)):
-        if(state[i] != "]"):
-            newList.append(state[i])
-        elif(state[i]=="]"):
-            newList.append(state[i])
-            break
-    return newList
-
 def getCounter1(counter):
     return counter
 
