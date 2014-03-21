@@ -109,7 +109,7 @@ def places(coord):
         else:
             locs = [(row+1,col+1, None),(row+1,col-1, None)]
 
-\# If our piece is King Black, we will create a list of possible moves
+# If our piece is King Black, we will create a list of possible moves
     elif piecetype == "KW" or piecetype == "KB":
         if col == 0:
             locs = [(row-1,col+1, None), (row+1, col+1, None)]
@@ -306,7 +306,7 @@ def attacks(moves):
     jumpPieces = []
     for x in range(len(moves)-1):
         for y in range (2):
-            if boardState[x][y] in moves[x][y]:
+            if boardState in moves[x][y]:
                 jumpPieces.append((x,y))
     return jumpPieces
 
