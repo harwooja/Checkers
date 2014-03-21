@@ -80,8 +80,72 @@ def drawBoard(window):
     drawPieces(window)
 
 
+
+def places(coord):
+
+# Breaks up our coordinate into an x and a y (row and col)
+    row = coord[0]
+    col = coord[1]
+# Saves the value of our piece (black, white, king black or king white)
+    piecetype = boardState[row][col]
+    locs = []
+
+# If our piece is White, we will create a list of possible moves
+    if piecetype == "W":
+        if col == 0:
+            locs = [(row-1,col+1, None)]
+        elif col == 7:
+            locs = [(row-1,col-1, None)]
+        else:
+            locs = [(row-1,col+1, None),(row-1,col-1, None)]
+
+# If our piece is Black, we will create a list of possible moves
+    elif piecetype == "B":
+
+        if col == 0:
+            locs = [(row+1,col+1, None)]
+        elif col == 7:
+            locs = [(row+1,col-1, None)]
+        else:
+            locs = [(row+1,col+1, None),(row+1,col-1, None)]
+
+\# If our piece is King Black, we will create a list of possible moves
+    elif piecetype == "KW" or piecetype == "KB":
+        if col == 0:
+            locs = [(row-1,col+1, None), (row+1, col+1, None)]
+        elif col == 7:
+            locs = [(row-1,col-1, None), (row+1, col-1, None)]
+        else:
+            locs = [(row-1,col+1, None),(row+1,col+1, None),(row-1,col-1, None),(row+1,col-1, None)]
+
+# Loop which checks if our "possible" values in our list are still legitimate.
+# Checks to see if our piece value is equilalent to our "possible" places we can
+# move. Ex: If we have a black piece and a possible spot also has a black piece
+# obviously there is no way we can move there. If it's white we might be able to
+# jump it (Attack function handles this)
+
+
+    for x in range(len(locs)-1):
+        r = locs[x][0]
+        c = locs[x][1]
+        piecethere = boardState[r][c]
+        if piecetype == "KW" or piecetype == "W" and piecethere == "KW" or piecethere == "W":
+            locs.pop(x)
+        elif piecetype == "KB" or piecetype == "B"and piecethere == "KB" or piecethere == "B":
+            locs.pop(x)
     
-    
+
+
+# Returns our edited and complete list of possible locations
+    return locs
+
+
+
+
+
+
+
+
     
     
     
@@ -156,6 +220,7 @@ def selectTile(a, b):
             boardState[a][b] = s.getSelectedCustomPiece()
             
     elif (s.getGameState() == 2): #Game phase
+        print(places((2,1)))
         if not GameState.s.getSelectedTile(): #A tile has not currently been picked up
             moves = checkLegalMoves((a,b)) #checking if the piece can be picked up
             st = GameState.s
@@ -237,7 +302,14 @@ def selectTile(a, b):
                 
 
         
-            
+def attacks(moves):
+    jumpPieces = []
+    for x in range(len(moves)-1):
+        for y in range (2):
+            if boardState[x][y] in moves[x][y]:
+                jumpPieces.append((x,y))
+    return jumpPieces
+
 
 
 def insertPiece(a, b, piece):
@@ -245,6 +317,17 @@ def insertPiece(a, b, piece):
 
 def deletePiece(a, b):
     boardState[a][b] = "BLANK"
+
+
+    
+
+
+
+
+
+
+        
+
 
 
     
