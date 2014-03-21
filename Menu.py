@@ -39,8 +39,8 @@ def drawGame(window):
     window.blit(turnLabel,(510,350))
     if(currentTurn == "WHITE"):
         window.blit(indicatorWhite,(530,350))
-        else:
-            window.blit(indicatorBlack,(530,350)
+    else:
+        window.blit(indicatorBlack,(530,350)
     
 def drawCustomSetup(window):
     window.blit(piece_W, (510,100))
