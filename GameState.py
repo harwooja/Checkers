@@ -58,10 +58,10 @@ class State():
         self.pickedUpPiece = "BLANK"
 
     def playerSwitch(self):
-        if currentPlayer == "WHITE":
-            currentPlayer = "BLACK"
+        if self.currentPlayer == "WHITE":
+            self.currentPlayer = "BLACK"
         else:
-            currentPlayer = "WHITE"
+            self.currentPlayer = "WHITE"
     
         
 s = State()
