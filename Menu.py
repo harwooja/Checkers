@@ -70,6 +70,9 @@ def buttonCustomFinish():
 def buttonCustomBoard():
     GameState.s.setGameState(1)
 
+def buttonMenu():
+    GameState.s.setGameState(0)
+
 def buttonCustomPiece(pieceType):
     GameState.s.setSelectedCustomPiece(pieceType)
 
