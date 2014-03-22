@@ -16,8 +16,8 @@ def init_buttons():
     indicatorWhite = pygame.image.load("white.png").convert_alpha()
     indicatorBlack = pygame.image.load("black.png").convert_alpha()
     #font/text
-    font = pygame.font.SysFont("monospace", 15)
-    turnLabel = font.render("Turn:", 1, (255,255,0))
+    font = pygame.font.SysFont("monospace", 40)
+    turnLabel = font.render("Turn:", 3, (255,255,255))
     #pieces
     piece_W = pygame.image.load("white.png").convert_alpha()
     piece_B = pygame.image.load("black.png").convert_alpha()
@@ -39,11 +39,11 @@ def drawGame(window):
     
     window.blit(buttonSave,(510,100))
     window.blit(buttonMenu,(510,250))
-    window.blit(turnLabel,(510,350))
+    window.blit(turnLabel,(510,363))
     if(currentTurn == "WHITE"):
-        window.blit(indicatorWhite,(530,350))
+        window.blit(indicatorWhite,(625,360))
     else:
-        window.blit(indicatorBlack,(530,350))
+        window.blit(indicatorBlack,(625,360))
     
 def drawCustomSetup(window):
     window.blit(piece_W, (510,100))
