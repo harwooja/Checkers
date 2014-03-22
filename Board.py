@@ -674,9 +674,7 @@ def selectTile(a, b):
                     boardState[a][b] = convFileToState(state.getPickedUpPiece())
                     for m in moves:
                         boardState[m[0]][m[1]] = "BLANK"
-                    state.setLegalMoves([])
-                    state.setSelectedTile(())
-                    state.setPickedUpTile("BLANK")
+                    state.clearPiece()
             else:
                 for m in moves:
                     if a == m[0] and b == m[1]: #case 2 a legal move is taken
