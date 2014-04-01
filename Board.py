@@ -190,7 +190,7 @@ def checkLegalMoves(coord):
                     if boardState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                         return locs
-                    elif boardState[row-1][column+1] == "B" or boardState[row+1][column+1] == "KB":
+                    elif boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
@@ -198,7 +198,7 @@ def checkLegalMoves(coord):
                     if boardState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                         return locs
-                    elif boardState[row-1][column-1] == "B" or boardState[row+1][column-1] == "KB":
+                    elif boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
@@ -444,7 +444,7 @@ def checkAttackMoves(coord):
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row-1][column-1] == "B" or boardState[row+1][column-1] == "KB":
+                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
                         if boardState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                             return locs
@@ -454,7 +454,7 @@ def checkAttackMoves(coord):
                     if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
                         if boardState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
-                    if boardState[row-1][column-1] == "B" or boardState[row+1][column-1] == "KB":
+                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
                         if boardState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     
@@ -541,7 +541,7 @@ def checkAttackMoves(coord):
                         if boardState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     return locs
-        if t == "Kw":
+        if t == "KW":
             if row < 2:
                 if column <2:
                     
