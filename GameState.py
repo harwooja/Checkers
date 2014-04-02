@@ -10,6 +10,7 @@ class State():
     currentPlayer = "WHITE"
     selectedTile = ()
     legalMoves = []
+    currentWin = ""
 
     def getGameState(self):
         return self.gameState
@@ -62,6 +63,16 @@ class State():
             self.currentPlayer = "BLACK"
         else:
             self.currentPlayer = "WHITE"
-    
+
+    def currentWinner(self, winner):
+        self.currentWin = winner
+
+    def getcurrentWinner(self):
+        return self.currentWin
         
+
+     
+        
+    
+    
 s = State()

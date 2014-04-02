@@ -663,6 +663,7 @@ def selectTile(a, b):
                 boardState[a][b] = "selected"
                 
                 for m in moves:
+                    print m
                     boardState[m[0]][m[1]] = "legal"
         
                 
@@ -693,7 +694,9 @@ def selectTile(a, b):
                                     boardState[m[0]][m[1]] = "BLANK"
                             
                             state.playerSwitch()
+                            gameEnd() 
                             state.clearPiece()
+                             
                             return
                         else: #a piece is overtaken
                             if not checkKing((a,b)):
@@ -712,7 +715,9 @@ def selectTile(a, b):
                             secMoves = checkAttackMoves((a,b))
                             if not secMoves: #there are no other attack moves to be taken
                                 state.playerSwitch()
+                                gameEnd()  
                                 state.clearPiece()
+                                 
                                 return
                             else: #there are attack moves to be taken
                                 state.setPickedUpPiece(convStateToFile(boardState[a][b]))
@@ -724,8 +729,66 @@ def selectTile(a, b):
                                 return
                             
                 
+def gameEnd():
+    bmoves  = 0
+    wmoves = 0
+    wpiece = 0
+    bpiece = 0
+    player = GameState.s.getCurrentPlayer()
 
+    
+#CHECK 1: Are there any pieces left on the board of one colour?
 
+    for i in range(len(boardState)):
+        m = boardState[i]
+        for j in range(len(m)):
+            col = boardState[i][j]
+
+            if (col == "W" or col == "KW"):
+                wpiece = wpiece + 1
+
+            if (col == "B" or col == "KB"):
+                bpiece = bpiece + 1
+
+            
+    if (wpiece == 0):
+        GameState.s.currentWinner("BLACK")
+    if (bpiece == 0):
+        GameState.s.currentWinner("WHITE")
+        
+            
+   
+#CHECK 2: Are there any possible moves left for a certain player?   
+
+    for i in range(len(boardState)):
+        m = boardState[i]
+        for j in range(len(m)):
+            piece = (i,j) #coordinate of piece on board
+            col = boardState[i][j]
+            if (checkLegalMoves(piece) != None or checkAttackMoves(piece) != None):
+                if (col == "B" or col == "KB"):
+                    bmoves += 1
+                    print("Avail black moves: ")
+                    print(bmoves)
+                if (col == "W" or col == "KW"):
+                    wmoves += 1
+                    print ("Avil white moves: ")
+                    print(wmoves)
+            
+
+    if (bmoves == 0 and player == "BLACK"):
+        GameState.s.currentWinner("WHITE")
+        print("bmoves == 0 end")
+    elif (wmoves == 0 and player == "WHITE"):
+        GameState.s.currentWinner("BLACK")
+        print("wmoves == 0 end")
+        
+   
+            
+            
+
+    
+      
 
 
 def insertPiece(a, b, piece):
