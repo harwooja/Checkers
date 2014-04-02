@@ -1,4 +1,4 @@
-import pygame,sys,Constants,GameState,Board
+import pygame,sys,Constants,GameState,Board,Saving
 from pygame.locals import *
 
 #only load images once
@@ -85,3 +85,15 @@ def buttonStandardBoard():
             if (5<=row<=8) and (((row+column) %2) == 1):
                 Board.insertPiece(row,column,"W")
                 
+def saveButton():
+    board = Board.boardState
+    cPlayer = GameState.s.getCurrentPlayer()
+    state = (board,cPlayer)
+    Saving.saveState(state)
+
+def loadButton():
+    state = Saving.loadState()
+    if state:
+        Board.boardState = state[0]
+        GameState.s.setCurrentPlayer(state[1])
+        GameState.s.setGameState(2)

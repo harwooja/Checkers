@@ -1,4 +1,4 @@
-import pygame, sys, Constants,Board,GameState,Menu,Saving
+import pygame, sys, Constants,Board,GameState,Menu
 from pygame.locals import *
 
 def dispatch(pos):
@@ -39,11 +39,13 @@ def callFunction(s):
     elif (s == "finish"):
         Menu.buttonCustomFinish()
     elif (s == "saveButton"):
-        print("Saved Game")
-        Saving.saveState(Board.boardState)
+        Menu.saveButton()
+        #print("Saved Game")
+        #Saving.saveState(Board.boardState)
     elif (s == "loadButton"):
-        print("Loaded Game")
-        Board.boardState = Saving.loadState()
-        GameState.s.setGameState(2)
+        Menu.loadButton()
+##        print("Loaded Game")
+##        Board.boardState = Saving.loadState()
+##        GameState.s.setGameState(2)
 
     

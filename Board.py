@@ -718,6 +718,8 @@ def selectTile(a, b):
                                 state.setPickedUpPiece(convStateToFile(boardState[a][b]))
                                 boardState[a][b] = "selected"
                                 state.setSelectedTile((a,b))
+                                for m in secMoves:
+                                    boardState[m[0]][m[1]] = "legal"
                                 state.setLegalMoves(secMoves)
                                 return
                             
