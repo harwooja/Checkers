@@ -18,6 +18,7 @@ def init_buttons():
     #font/text
     font = pygame.font.SysFont("monospace", 40)
     turnLabel = font.render("Turn:", 3, (255,255,255))
+    winnerLabel = font.render("is the winner!",3,(0,0,0))
     #pieces
     piece_W = pygame.image.load("white.png").convert_alpha()
     piece_B = pygame.image.load("black.png").convert_alpha()
@@ -44,6 +45,10 @@ def drawGame(window):
         window.blit(indicatorWhite,(625,360))
     else:
         window.blit(indicatorBlack,(625,360))
+
+def drawWinner(window):
+    pygame.draw.rect(window,white,Rect((20,20),(200,200)))
+    window.blit(winnerLabel,(150,150))
     
 def drawCustomSetup(window):
     window.blit(piece_W, (510,100))
