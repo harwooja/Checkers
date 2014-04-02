@@ -40,12 +40,9 @@ def callFunction(s):
         Menu.buttonCustomFinish()
     elif (s == "saveButton"):
         Menu.saveButton()
-        #print("Saved Game")
-        #Saving.saveState(Board.boardState)
     elif (s == "loadButton"):
         Menu.loadButton()
-##        print("Loaded Game")
-##        Board.boardState = Saving.loadState()
-##        GameState.s.setGameState(2)
+    elif (s == "menuButton"):
+        Menu.buttonMainMenu()
 
     
