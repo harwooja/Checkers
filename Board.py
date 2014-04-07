@@ -797,7 +797,8 @@ def gameEnd():
             
             
 
-    
+def getBoardState():
+    return boardState
       
 
 

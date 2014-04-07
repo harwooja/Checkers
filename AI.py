@@ -3,8 +3,9 @@ import pygame, Board
 
 
 # Reads the entire board, stores a list of each pieces possibilities
-def choosePiece(board):
+def choosePiece():
 
+    board = Board.getBoardState()
 
     attackmoves = [] # [coordinate, value at coordinate, list of attack moves]
     normalmoves = [] # [coordinate, value at coordinate, list of normal moves]
@@ -25,15 +26,25 @@ def choosePiece(board):
     
 def ranking(normalmoves, attackmoves):
 
-    for i in normalmoves:
-        nindex = i[0]
-        nval = i[1]
-        nlst = i[2]
+    board = Board.getBoardState()
 
-    for i in attackmoves:
-        aindex = i[0]
-        aval = i[1]
-        alst = i[2]
+    if (attackmoves):
+        for i in attackmoves:
+            aindex = i[0]
+            aval = i[1]
+            alst = i[2]        
+    elif (normalmoves):
+        for i in normalmoves:
+            nindex = i[0]
+            nval = i[1]
+            nlst = i[2]
+    else:
+        print "Empty attack moves and empty normal moves in ranking (AI.py)"
+
+
+
+
+
 
 
 def stateChange(board, move):
