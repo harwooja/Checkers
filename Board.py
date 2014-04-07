@@ -42,7 +42,7 @@ def drawBoard(window):
     red = 245,27,27
     redp = 252,3,3
     goldp = 209,227,43
-    white = 255,255,255
+    silver = 192,192,192
     bg = pygame.image.load("back.jpg")
     bg = pygame.transform.scale(bg, size)
     window.blit(bg,(0,0))
@@ -55,7 +55,7 @@ def drawBoard(window):
         
         y = 10
         for j in range(4):
-            pygame.draw.rect(window,white,Rect((x,y),(60,60)))
+            pygame.draw.rect(window,silver,Rect((x,y),(60,60)))
             y = y +120
             
                                                
@@ -70,7 +70,7 @@ def drawBoard(window):
         y = 70
         for j in range(4):
             
-            pygame.draw.rect(window,white,Rect((x,y),(60,60)))
+            pygame.draw.rect(window,silver,Rect((x,y),(60,60)))
             y = y +120
                                                
         
