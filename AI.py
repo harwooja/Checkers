@@ -34,6 +34,10 @@ def ranking(normalmoves, attackmoves):
         aindex = i[0]
         aval = i[1]
         alst = i[2]
-            
+
+
+def stateChange(board, move):
+
+    return 0                
 
 
