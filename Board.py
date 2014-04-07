@@ -144,40 +144,45 @@ def cEmpty(r,c):
     else:
         return False
 
-def checkLegalMoves(coord):
+def checkLegalMoves(coord,localBState = None, localCurrentPlayer = None):
+    if not localBState:
+        localBState = boardState
+    if not localCurrentPlayer:
+        localCurrentPlayer = GameState.s.getCurrentPlayer()
+        
+    
     locs = []
     row = coord[0]
     column = coord[1]
-    t = boardState[row][column]
-    s = GameState.s
+    t = localBState[row][column]
     color = "None"
     if t == "W" or t == "KW":
         color = "WHITE"
     elif t == "B" or t == "KB":
         color = "BLACK"
-    if color == s.getCurrentPlayer():
+    if color == localCurrentPlayer:
         if t == "B":
             if row != 7:
                 if column == 0:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
                         return locs
-                    elif boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
+                    elif localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 elif column == 7:
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
                         return locs
-                    elif boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
+                    elif localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -187,27 +192,27 @@ def checkLegalMoves(coord):
         if t == "W":
             if row != 0:
                 if column == 0:
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                         return locs
-                    elif boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
+                    elif localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 elif column == 7:
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                         return locs
-                    elif boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
+                    elif localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 else:
                     
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         
                         locs.append((row-1,column+1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -217,25 +222,25 @@ def checkLegalMoves(coord):
         if t == "KB":
             if row == 0:
                 if column == 0:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
                         return locs
-                    elif boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
+                    elif localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 elif column == 7:
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
                         return locs
-                    elif boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
+                    elif localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -244,25 +249,25 @@ def checkLegalMoves(coord):
                     return locs
             elif row == 7:
                 if column == 0:
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
                         return locs
-                    elif boardState[row-1][column+1] == "W" or boardState[row+1][column+1] == "KW":
+                    elif localBState[row-1][column+1] == "W" or localBState[row+1][column+1] == "KW":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 elif column == 7:
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                         return locs
-                    elif boardState[row-1][column-1] == "W" or boardState[row+1][column-1] == "KW":
+                    elif localBState[row-1][column-1] == "W" or localBState[row+1][column-1] == "KW":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 else:
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -271,9 +276,9 @@ def checkLegalMoves(coord):
                     return locs
             else:
                 if column == 0:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -281,9 +286,9 @@ def checkLegalMoves(coord):
                             locs.append(moves)
                     return locs
                 elif column == 7:
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -291,13 +296,13 @@ def checkLegalMoves(coord):
                             locs.append(moves)
                     return locs
                 else:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -307,25 +312,25 @@ def checkLegalMoves(coord):
         if t == "KW":
             if row == 0:
                 if column == 0:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
                         return locs
-                    elif boardState[row+1][column+1] == "B" or boardState[row+1][column+1] == "KB":
+                    elif localBState[row+1][column+1] == "B" or localBState[row+1][column+1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 elif column == 7:
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
                         return locs
-                    elif boardState[row+1][column-1] == "B" or boardState[row+1][column-1] == "KB":
+                    elif localBState[row+1][column-1] == "B" or localBState[row+1][column-1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -334,25 +339,25 @@ def checkLegalMoves(coord):
                     return locs
             elif row == 7:
                 if column == 0:
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                         return locs
-                    elif boardState[row-1][column+1] == "B" or boardState[row+1][column+1] == "KB":
+                    elif localBState[row-1][column+1] == "B" or localBState[row+1][column+1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 elif column == 7:
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                         return locs
-                    elif boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
+                    elif localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
                         return checkAttackMoves((row,column))
                     else:
                         return locs
                 else:
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -362,9 +367,9 @@ def checkLegalMoves(coord):
             else:
                 if column == 0:
                     
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -372,9 +377,9 @@ def checkLegalMoves(coord):
                             locs.append(moves)
                     return locs
                 elif column == 7:
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -382,13 +387,13 @@ def checkLegalMoves(coord):
                             locs.append(moves)
                     return locs
                 else:
-                    if boardState[row+1][column+1] == "BLANK":
+                    if localBState[row+1][column+1] == "BLANK":
                         locs.append((row+1,column+1,None))
-                    if boardState[row+1][column-1] == "BLANK":
+                    if localBState[row+1][column-1] == "BLANK":
                         locs.append((row+1,column-1,None))
-                    if boardState[row-1][column-1] == "BLANK":
+                    if localBState[row-1][column-1] == "BLANK":
                         locs.append((row-1,column-1,None))
-                    if boardState[row-1][column+1] == "BLANK":
+                    if localBState[row-1][column+1] == "BLANK":
                         locs.append((row-1,column+1,None))
                     at = checkAttackMoves((row,column))
                     if at:
@@ -396,66 +401,71 @@ def checkLegalMoves(coord):
                             locs.append(moves)
                     return locs
 
-def checkAttackMoves(coord):
+def checkAttackMoves(coord,localBState = None, localCurrentPlayer = None):
+    if not localBState:
+        localBState = boardState
+    if not localCurrentPlayer:
+        localCurrentPlayer = GameState.s.getCurrentPlayer()
+        
     locs = []
     row = coord[0]
     column = coord[1]
-    t = boardState[row][column]
+    t = localBState[row][column]
     s = GameState.s
     color = "None"
     if t == "W" or t == "KW":
         color = "WHITE"
     elif t == "B" or t == "KB":
         color = "BLACK"
-    if color == s.getCurrentPlayer():
+    if color == localCurrentPlayer:
         if t == "B":
             if row < 6:
                 if column <2:
                     
-                    if boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
                             return locs
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
                             return locs
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
                     return locs
         if t == "W":
             
             if row > 1:
                 if column < 2:
-                    if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
                             return locs
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                             return locs
                     else:
                         return locs
                 else:
-                    if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
-                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     
                     return locs
@@ -463,164 +473,164 @@ def checkAttackMoves(coord):
             if row < 2:
                 if column <2:
                     
-                    if boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
                             return locs
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
                             return locs
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
                     return locs
             elif row > 5:
                 if column <2:
-                    if boardState[row-1][column+1] == "W" or boardState[row-1][column+1] == "KW":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "W" or localBState[row-1][column+1] == "KW":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
                             return locs
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row-1][column-1] == "W" or boardState[row-1][column-1] == "KW":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "W" or localBState[row-1][column-1] == "KW":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                             return locs
                     else:
                         return locs
                 else:
-                    if boardState[row-1][column+1] == "W" or boardState[row-1][column+1] == "KW":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "W" or localBState[row-1][column+1] == "KW":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
-                    if boardState[row-1][column-1] == "W" or boardState[row-1][column-1] == "KW":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "W" or localBState[row-1][column-1] == "KW":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     return locs
             else:
                 if column <2:
                     
-                    if boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row-1][column+1] == "W" or boardState[row-1][column+1] == "KW":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "W" or localBState[row-1][column+1] == "KW":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
-                    if boardState[row-1][column-1] == "W" or boardState[row-1][column-1] == "KW":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "W" or localBState[row-1][column-1] == "KW":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "W" or boardState[row+1][column+1] == "KW":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "W" or localBState[row+1][column+1] == "KW":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row-1][column+1] == "W" or boardState[row-1][column+1] == "KW":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "W" or localBState[row-1][column+1] == "KW":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
-                    if boardState[row+1][column-1] == "W" or boardState[row+1][column-1] == "KW":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "W" or localBState[row+1][column-1] == "KW":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
-                    if boardState[row-1][column-1] == "W" or boardState[row-1][column-1] == "KW":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "W" or localBState[row-1][column-1] == "KW":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     return locs
         if t == "KW":
             if row < 2:
                 if column <2:
                     
-                    if boardState[row+1][column+1] == "B" or boardState[row+1][column+1] == "KB":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "B" or localBState[row+1][column+1] == "KB":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
                             return locs
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row+1][column-1] == "B" or boardState[row+1][column-1] == "KB":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "B" or localBState[row+1][column-1] == "KB":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
                             return locs
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "B" or boardState[row+1][column+1] == "KB":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "B" or localBState[row+1][column+1] == "KB":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row+1][column-1] == "B" or boardState[row+1][column-1] == "KB":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "B" or localBState[row+1][column-1] == "KB":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
                     return locs
             elif row > 5:
                 if column <2:
-                    if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
                             return locs
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                             return locs
                     else:
                         return locs
                 else:
-                    if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
-                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     return locs
             else:
                 if column <2:
                     
-                    if boardState[row+1][column+1] == "B" or boardState[row+1][column+1] == "KB":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "B" or localBState[row+1][column+1] == "KB":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
                     else:
                         return locs
                 elif column > 5:
-                    if boardState[row+1][column-1] == "B" or boardState[row+1][column-1] == "KB":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "B" or localBState[row+1][column-1] == "KB":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
-                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     else:
                         return locs
                 else:
-                    if boardState[row+1][column+1] == "B" or boardState[row+1][column+1] == "KB":
-                        if boardState[row+2][column+2] == "BLANK":
+                    if localBState[row+1][column+1] == "B" or localBState[row+1][column+1] == "KB":
+                        if localBState[row+2][column+2] == "BLANK":
                             locs.append((row+2,column+2,(row+1,column+1)))
-                    if boardState[row-1][column+1] == "B" or boardState[row-1][column+1] == "KB":
-                        if boardState[row-2][column+2] == "BLANK":
+                    if localBState[row-1][column+1] == "B" or localBState[row-1][column+1] == "KB":
+                        if localBState[row-2][column+2] == "BLANK":
                             locs.append((row-2,column+2,(row-1,column+1)))
-                    if boardState[row+1][column-1] == "B" or boardState[row+1][column-1] == "KB":
-                        if boardState[row+2][column-2] == "BLANK":
+                    if localBState[row+1][column-1] == "B" or localBState[row+1][column-1] == "KB":
+                        if localBState[row+2][column-2] == "BLANK":
                             locs.append((row+2,column-2,(row+1,column-1)))
-                    if boardState[row-1][column-1] == "B" or boardState[row-1][column-1] == "KB":
-                        if boardState[row-2][column-2] == "BLANK":
+                    if localBState[row-1][column-1] == "B" or localBState[row-1][column-1] == "KB":
+                        if localBState[row-2][column-2] == "BLANK":
                             locs.append((row-2,column-2,(row-1,column-1)))
                     return locs
 
