@@ -760,11 +760,11 @@ def gameEnd():
    
 #CHECK 2: Are there any possible moves left for a certain player?   
 
-    for i in range(len(boardState)):
-        m = boardState[i]
-        for j in range(len(m)):
-            piece = (i,j) #coordinate of piece on board
-            col = boardState[i][j]
+        for i in range(len(boardState)):
+            m = boardState[i]
+            for j in range(len(m)):
+                piece = (i,j) #coordinate of piece on board
+                col = boardState[i][j]
             if (checkLegalMoves(piece) != None or checkAttackMoves(piece) != None):
                 if (col == "B" or col == "KB"):
                     bmoves += 1
