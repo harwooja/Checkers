@@ -49,6 +49,7 @@ def drawGame(window):
 def drawWinner(window):
     pygame.draw.rect(window,white,Rect((20,20),(200,200)))
     window.blit(winnerLabel,(150,150))
+    .getCurrentWinner
     
 def drawCustomSetup(window):
     window.blit(piece_W, (510,100))
