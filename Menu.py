@@ -16,7 +16,7 @@ def init_buttons():
     indicatorWhite = pygame.image.load("white.png").convert_alpha()
     indicatorBlack = pygame.image.load("black.png").convert_alpha()
     #font/text
-    font = pygame.font.SysFont("monospace", 40)
+    font = pygame.font.SysFont(None, 45)
     turnLabel = font.render("Turn:", 3, (255,255,255))
     winnerLabel = font.render("is the winner!",3,(0,0,0))
     #pieces
@@ -31,20 +31,20 @@ def init_buttons():
     
 #drawSetup function
 def drawSetup(window):
-    window.blit(buttonStandard,(510,100))
-    window.blit(buttonCustom,(510,250))
-    window.blit(buttonLoad,(510,400))
+    window.blit(buttonStandard,(510,80.75))
+    window.blit(buttonCustom,(510,220.5))
+    window.blit(buttonLoad,(510,360.25))
 
 def drawGame(window):
     currentTurn = GameState.s.getCurrentPlayer() #WHITE or BLACK
     
-    window.blit(buttonSave,(510,100))
-    window.blit(buttonMenu,(510,250))
-    window.blit(turnLabel,(510,363))
+    window.blit(buttonSave,(510,80.75))
+    window.blit(buttonMenu,(510,220.5))
+    window.blit(turnLabel,(582,357))
     if(currentTurn == "WHITE"):
-        window.blit(indicatorWhite,(625,360))
+        window.blit(indicatorWhite,(666,353))
     else:
-        window.blit(indicatorBlack,(625,360))
+        window.blit(indicatorBlack,(666,353))
 
 def drawWinner(window):
     pygame.draw.rect(window,white,Rect((20,20),(200,200)))
