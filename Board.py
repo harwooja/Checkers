@@ -634,12 +634,11 @@ def checkKing(coord):
 def selectTile(a, b):
 
     s = GameState.s
-
     if (s.getGameState() == 1): #Setup phase
         
         checkC = a + b
 
-        if (checkC % 2 != 0):  #they clicked a white tile
+        if (checkC % 2 != 0):  #they clicked a silver tile
             boardState[a][b] = s.getSelectedCustomPiece()
             
     elif (s.getGameState() == 2): #Game phase
@@ -715,6 +714,9 @@ def selectTile(a, b):
                                 state.clearPiece()
                                 return
                             else: #there are attack moves to be taken
+                                font = pygame.font.SysFont(None, 45)
+                                scoreLabel = font.render("Turn:", 3, (255,255,255))
+                                window.blit(scoreLabel,(582,600))
                                 state.setPickedUpPiece(convStateToFile(boardState[a][b]))
                                 boardState[a][b] = "selected"
                                 state.setSelectedTile((a,b))
@@ -722,9 +724,6 @@ def selectTile(a, b):
                                     boardState[m[0]][m[1]] = "legal"
                                 state.setLegalMoves(secMoves)
                                 return
-                            
-                
-
 
 
 

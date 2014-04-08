@@ -51,23 +51,23 @@ def drawWinner(window):
     window.blit(winnerLabel,(150,150))
     
 def drawCustomSetup(window):
-    window.blit(piece_W, (510,100))
-    window.blit(piece_WK, (510,200))
-    window.blit(piece_B, (510,300))
-    window.blit(piece_BK, (510,400))
-    window.blit(piece_BLANK, (510, 10))
-    window.blit(piece_FINISH, (510, 500))
+    window.blit(piece_W, (510,137))
+    window.blit(piece_WK, (510,234))
+    window.blit(piece_B, (510,331))
+    window.blit(piece_BK, (510,428))
+    window.blit(piece_BLANK, (510, 40))
+    window.blit(piece_FINISH, (510, 515))
     s = GameState.s.getSelectedCustomPiece()
     if s == "W":
-        window.blit(piece_Selected, (510,100))
+        window.blit(piece_Selected, (510,137))
     elif s == "B":
-        window.blit(piece_Selected, (510,300))
+        window.blit(piece_Selected, (510,331))
     elif s == "KW":
-        window.blit(piece_Selected, (510,200))
+        window.blit(piece_Selected, (510,234))
     elif s == "KB":
-        window.blit(piece_Selected, (510,400))
+        window.blit(piece_Selected, (510,428))
     elif s == "BLANK":
-        window.blit(piece_Selected, (510,10))
+        window.blit(piece_Selected, (510,40))
 
 def buttonCustomFinish():
     GameState.s.setGameState(2)
