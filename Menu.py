@@ -49,7 +49,9 @@ def drawGame(window):
 def drawWinner(window):
     pygame.draw.rect(window,white,Rect((20,20),(200,200)))
     window.blit(winnerLabel,(150,150))
-    .getCurrentWinner
+    winner = GameState.getCurrentWinner
+    wpLabel = font.render(winner,3,(0,0,0))
+    window.blit(wpLabel,(100,150))
     
 def drawCustomSetup(window):
     window.blit(piece_W, (510,100))
