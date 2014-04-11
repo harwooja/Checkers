@@ -745,6 +745,7 @@ def gameEnd():
     wpiece = 0
     bpiece = 0
     player = GameState.s.getCurrentPlayer()
+    
 
     
 #CHECK 1: Are there any pieces left on the board of one colour?
@@ -770,12 +771,13 @@ def gameEnd():
    
 #CHECK 2: Are there any possible moves left for a certain player?   
 
-        for i in range(len(boardState)):
-            m = boardState[i]
-            for j in range(len(m)):
-                piece = (i,j) #coordinate of piece on board
-                col = boardState[i][j]
-            if (checkLegalMoves(piece) != None or checkAttackMoves(piece) != None):
+    for i in range(len(boardState)):
+        m = boardState[i]
+        for j in range(len(m)):
+            piece = (i,j) #coordinate of piece on board
+            col = boardState[i][j]
+            
+            if (checkLegalMoves(piece) or checkAttackMoves(piece)):
                 if (col == "B" or col == "KB"):
                     bmoves += 1
                     print("Avail black moves: ")
