@@ -1,6 +1,11 @@
+#This class deals with all of our input. Will call functions depending
+# on what the user clicks on the board.
+
+#Imports all the modules used here
 import pygame, sys, Constants,Board,GameState,Menu
 from pygame.locals import *
 
+#dispatch function:
 def dispatch(pos):
     bTopLeft = Board.TOPLEFT
     bWidth = Board.WIDTH
@@ -20,6 +25,8 @@ def dispatch(pos):
                 if (xmin<=pos[0]<=xmax) and (ymin<=pos[1] <=ymax):
                     callFunction(i[1])
 
+#callFunction function: Depending on what our input value from the user is, we will
+# confirm whatever the user wanted to do by calling the function in Menu.
 
 def callFunction(s):
     if (s == "standardButton"):

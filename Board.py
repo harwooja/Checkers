@@ -1,3 +1,8 @@
+# This module deals with everything that is a part of our physical and logical
+# board. We draw the pieces here, calculate states, as well as manipulate our
+# logical 2-d array in order to keep track of everything that is happening.
+
+#Imports all of our other modules used here
 import pygame, sys, Constants, GameState
 from pygame.locals import *
 
@@ -11,11 +16,13 @@ WIDTH = 480
 
 boardState = []
 
+#Creates an 8x8 board where each index is filled with "BLANK" (no pieces on our board yet)
 for m in range (8):
     boardState.append([])
     for z in range(8):
         boardState[m].append("BLANK")
 
+#convStateToFile: returns a piece value depending on the value of our input
 def convStateToFile(a):
     if a == "B":
         return "black"
@@ -25,7 +32,7 @@ def convStateToFile(a):
         return "kingblack"
     elif a == "KW":
         return "kingwhite"
-
+#convFileToState: returns a piece value depending ont he value of our input
 def convFileToState(a):
     if a == "black":
         return "B"
@@ -35,6 +42,10 @@ def convFileToState(a):
         return "KB"
     elif a == "kingwhite":
         return "KW"
+
+#drawBoard: A very important module. Draws every block on the board in a checker
+# board fashion. When this function is ran, user should see the checker board
+# without pieces on it until we call drawPieces!
 
 def drawBoard(window):
     size = Constants.SIZE
@@ -93,6 +104,9 @@ def drawBoard(window):
     
     
     
+#drawPieces function: This function is the draw function for our standard board.
+# Will draw every piece on the board that would normally follow for a standard
+# checkerboard.
 
 def drawPieces(window):
 
@@ -138,11 +152,17 @@ def drawPieces(window):
                 ycord = 10 + (index*60)
                 xcord = 10 + (j*60)
                 pygame.draw.rect(window,yellow,Rect((xcord,ycord),(60,60)))
+
+#cEmpty function: A function that checks if our boardState is blank or not.
 def cEmpty(r,c):
     if boardState == "BLANK":
         return True
     else:
         return False
+
+#checkLegalMoves: Another important function. Takes in our coordinate, state,
+# and current player and will calculate any legal possible moves that can be
+# taken without jumping an opposing piece. Returns a list of moves.
 
 def checkLegalMoves(coord,localBState = None, localCurrentPlayer = None):
     if not localBState:
@@ -400,6 +420,11 @@ def checkLegalMoves(coord,localBState = None, localCurrentPlayer = None):
                         for moves in at:
                             locs.append(moves)
                     return locs
+
+
+#checkAttackMoves: Another important function. Takes in our coordinate, state,
+# and current player and will calculate any attack possible moves that can be
+# taken that will jump opposing pieces. Returns a list of moves.
 
 def checkAttackMoves(coord,localBState = None, localCurrentPlayer = None):
     if not localBState:
@@ -738,7 +763,8 @@ def selectTile(a, b):
                                 state.setLegalMoves(secMoves)
                                 return
                             
-                
+#gameEnd function: This function will check if our game has ended. Scans
+# 2-d array each time a player is switched to see if there are any moves left.
 def gameEnd():
     bmoves  = 0
     wmoves = 0
@@ -776,21 +802,25 @@ def gameEnd():
         for j in range(len(m)):
             piece = (i,j) #coordinate of piece on board
             col = boardState[i][j]
-            
+
+#Checks if we have any legal moves or attack moves
             if (checkLegalMoves(piece) or checkAttackMoves(piece)):
+#If we have any moves and our pieces are black, increments amount of black moves
                 if (col == "B" or col == "KB"):
                     bmoves += 1
                     print("Avail black moves: ")
                     print(bmoves)
+#If we have any moves and our pieces are white, increments amount of white moves
                 if (col == "W" or col == "KW"):
                     wmoves += 1
                     print ("Avil white moves: ")
                     print(wmoves)
             
-
+# Sets current winner if our color is X (black/white) and has no moves
     if (bmoves == 0 and player == "BLACK"):
         GameState.s.currentWinner("WHITE")
         print("bmoves == 0 end")
+
     elif (wmoves == 0 and player == "WHITE"):
         GameState.s.currentWinner("BLACK")
         print("wmoves == 0 end")
@@ -798,14 +828,18 @@ def gameEnd():
    
             
             
-
+#getBoardState function: Returns the 2-D array!
 def getBoardState():
     return boardState
       
 
-
+#insertPiece function: Takes in two coordinate values as well as a value (black, white, blank, etc)
+# and will set that value at that place in our 2-d array.
 def insertPiece(a, b, piece):
     boardState[a][b] = piece
+
+#deletePiece function: Takes in two coordinate values, will delete the
+# actual value on our 2-d array at that spot.
 
 def deletePiece(a, b):
     boardState[a][b] = "BLANK"
