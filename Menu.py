@@ -47,10 +47,13 @@ def drawGame(window):
         window.blit(indicatorBlack,(625,360))
 
 def drawWinner(window):
+    white = (255,255,255)
+    winnerLabel = font.render("is the winner!",3,(0,0,0))
     pygame.draw.rect(window,white,Rect((20,20),(200,200)))
     window.blit(winnerLabel,(150,150))
-    winner = GameState.getCurrentWinner
-    wpLabel = font.render(winner,3,(0,0,0))
+    winner = GameState.s.getcurrentWinner()
+   
+    wpLabel = font.render(winner ,3,(0,0,0))
     window.blit(wpLabel,(100,150))
     
 def drawCustomSetup(window):
