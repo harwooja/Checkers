@@ -34,7 +34,7 @@ def drawSetup(window):
     window.blit(buttonStandard,(510,80.75))
     window.blit(buttonCustom,(510,220.5))
     window.blit(buttonLoad,(510,360.25))
-
+    
 def drawGame(window):
     currentTurn = GameState.s.getCurrentPlayer() #WHITE or BLACK
     

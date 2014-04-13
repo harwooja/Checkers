@@ -714,9 +714,6 @@ def selectTile(a, b):
                                 state.clearPiece()
                                 return
                             else: #there are attack moves to be taken
-                                font = pygame.font.SysFont(None, 45)
-                                scoreLabel = font.render("Turn:", 3, (255,255,255))
-                                window.blit(scoreLabel,(582,600))
                                 state.setPickedUpPiece(convStateToFile(boardState[a][b]))
                                 boardState[a][b] = "selected"
                                 state.setSelectedTile((a,b))
