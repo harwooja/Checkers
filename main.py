@@ -54,6 +54,9 @@ while done == False:
         Menu.drawCustomSetup(window)
     elif GameState.s.getGameState() == 2:
         Menu.drawGame(window)
+
+    if GameState.s.getcurrentWinner() != "":
+        Menu.drawWinner(window)
     
     drawPickedUpPiece()
     pygame.display.flip()

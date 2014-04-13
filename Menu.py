@@ -51,7 +51,7 @@ def drawWinner(window):
     window.blit(winnerLabel,(150,150))
     winner = GameState.getCurrentWinner
     wpLabel = font.render(winner,3,(0,0,0))
-    window.blit(wpLabel,(100,150)
+    window.blit(wpLabel,(100,150))
     
 def drawCustomSetup(window):
     window.blit(piece_W, (510,100))
