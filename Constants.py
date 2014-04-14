@@ -1,4 +1,5 @@
-#Constants
+#Constants Module: Simply creates a list of buttons that all have
+# constant values 
 
 
 SIZE = [800,600]
